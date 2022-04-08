@@ -1,0 +1,111 @@
+
+.logo {
+
+  color: #d50000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************/
+.App {
+  text-align: center;
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  font-size: calc(7px + 2vmin);
+  font-style: normal;
+  color: #d50000;
+  margin: auto;
+}
+
+.input {
+  background-color: white;
+  width: 55%;
+  border: none;
+  border-bottom: 1px solid #d50000;
+  text-align: left;
+  font-size: calc(5px + 2vmin);
+  color: #d50000;
+}
+
+input:focus {
+  border: none;
+  border-bottom: 2px solid #d50000;
+  outline-offset: 0px;
+  outline: none;
+}
+
+.cardDiv {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.card {
+  margin-right: 25px;
+  margin-left: 25px;
+  width: 400px;
+}
+
+.App-header {
+  text-align: center;
+  font-size: calc(28px + 2vmin);
+  color: #d50000;
+  font-style: normal;
+}
+
+.App-sub-header {
+  text-align: center;
+  font-size: calc(20px + 2vmin);
+  color: #d50000;
+  font-style: normal;
+}
+
+div.scrollable {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+#displayBox {
+  border: 4px solid #d50000;
+  width: 80%;
+  height: 550px;
+  margin-top: 10px;
+  padding: 0px;
+  vertical-align: top;
+  border-radius: 30px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-down-arrow {
+    animation: App-down-arrow infinite 3s linear;
+  }
+}
+
+@keyframes App-down-arrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}

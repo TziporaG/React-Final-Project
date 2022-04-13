@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import RecipeCard from "./RecipeCard";
+import RecipeTile from "./RecipeTile";
 import { RecipeContext } from "../app/context";
 
 export function Home() {
@@ -27,7 +27,7 @@ export function Home() {
     <div className="homepage">
       <div id="grid">
         {currRandomRecipes?.map((recipe, index) => (
-          <RecipeCard
+          <RecipeTile
             key={index}
             index={index}
             title={recipe.title}
@@ -37,7 +37,7 @@ export function Home() {
             // handleFavoriteClicked
             // handleShareClicked
             // handleRecipeClicked
-          ></RecipeCard>
+          ></RecipeTile>
         ))}
       </div>
     </div>

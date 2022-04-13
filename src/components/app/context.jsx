@@ -25,7 +25,7 @@ const changeToDoListReducer = (state, action) => {
 
 export const TodoContext = React.createContext();
 
-export const TodoProvider = (props) => {
+export const FavoritesProvider = (props) => {
   const [toDoState, dispatchChangeToDoList] = useReducer(
     changeToDoListReducer,
     initialList

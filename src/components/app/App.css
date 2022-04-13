@@ -1,8 +1,17 @@
 
 .homepage {
  /* background-image: url('background.jpg');*/
+ /*background-color: black;*/
+ margin: auto;
 }
 
+.recipe {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  height: 150vh;
+  position: relative;
+}
 
 .logo {
   color: #d50000;
@@ -34,7 +43,7 @@
 /******************************************************/
 .App {
   text-align: center;
-  background-color: white;
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

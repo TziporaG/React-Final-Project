@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RecipeCard from "./RecipeCard";
+import { RecipeContext } from "../app/context";
 
 export function Home() {
   const [currRandomRecipes, setCurrRandomRecipes] = React.useState([{}]);
@@ -7,13 +8,13 @@ export function Home() {
 
   useEffect(() => {
     fetch(
-      "https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=5"
+      "https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=10"
     )
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then(
-        (result) => {
+        (data) => {
           setIsLoaded(true);
-          setCurrRandomRecipes(result.Items);
+          setCurrRandomRecipes(data.results);
         }
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -23,19 +24,22 @@ export function Home() {
   }, []);
 
   return (
-    <div style={{ display: "grid" }}>
-      {/* {currRandomRecipes.map((recipe, index) => (
-        <RecipeCard
-          key={index}
-          index={index}
-          title={recipe.title}
-          id={recipe.id}
-          image={recipe.image}
-          // handleFavoriteClicked
-          // handleShareClicked
-          // handleRecipeClicked
-     ></RecipeCard>
-      ))}*/}
+    <div className="homepage">
+      <div id="grid">
+        {currRandomRecipes?.map((recipe, index) => (
+          <RecipeCard
+            key={index}
+            index={index}
+            title={recipe.title}
+            id={recipe.id}
+            image={recipe.image}
+
+            // handleFavoriteClicked
+            // handleShareClicked
+            // handleRecipeClicked
+          ></RecipeCard>
+        ))}
+      </div>
     </div>
   );
 }

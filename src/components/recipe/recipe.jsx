@@ -19,7 +19,17 @@ export const Recipe = () => {
 
   return (
     <div>
-      <img className="recipe" src={currRecipe} />
+      <img
+        className="recipe"
+        src={currRecipe}
+        style={{
+          position: "absolute",
+          margin: "auto",
+          top: "100px",
+          left: "0px",
+          right: "0px",
+        }}
+      />
     </div>
   );
 };

@@ -29,6 +29,29 @@
   padding: 10px;
 }
 
+.input {
+  background-color: white;
+  width: 55%;
+  border: none;
+  border-bottom: 1px solid #d50000;
+  text-align: left;
+  font-size: calc(5px + 2vmin);
+  color: #d50000;
+}
+
+input:focus {
+  border: none;
+  border-bottom: 2px solid #d50000;
+  outline-offset: 0px;
+  outline: none;
+}
+
+.backgroundImage {
+
+  height: 500px;
+  width: 100%;
+  z-index: -1;
+}
 
 
 
@@ -56,22 +79,6 @@
   margin: auto;
 }
 
-.input {
-  background-color: white;
-  width: 55%;
-  border: none;
-  border-bottom: 1px solid #d50000;
-  text-align: left;
-  font-size: calc(5px + 2vmin);
-  color: #d50000;
-}
-
-input:focus {
-  border: none;
-  border-bottom: 2px solid #d50000;
-  outline-offset: 0px;
-  outline: none;
-}
 
 .cardDiv {
   justify-content: center;

@@ -1,44 +1,48 @@
 import React, { useReducer } from "react";
 
 var initialList = [];
-const changeToDoListReducer = (state, action) => {
-  var newTodos = [];
+const changeFavoritesReducer = (state, action) => {
+  var newFavorites = [];
   switch (action.type) {
-    case "addItem":
-      newTodos = [...state, { text: action.text, isCompleted: false }];
-      return newTodos;
+    case "add":
+      newFavorites = [
+        ...state,
+        {
+          title: action.title,
+          id: action.id,
+          index: action.index,
+          image: action.image,
+          isFavorited: true,
+        },
+      ];
+      return newFavorites;
 
-    case "removeItem":
-      newTodos = [...state];
-      newTodos.splice(action.index, 1);
-      return newTodos;
-
-    case "completeItem":
-      newTodos = [...state];
-      newTodos[action.index].isCompleted = true;
-      return newTodos;
+    case "remove":
+      newFavorites = [...state];
+      newFavorites.splice(action.index, 1);
+      return newFavorites;
 
     default:
       throw new Error(`Count Reducer does not recognize ${action.type}`);
   }
 };
 
-export const TodoContext = React.createContext();
+export const FavoritesContext = React.createContext();
 
 export const FavoritesProvider = (props) => {
-  const [toDoState, dispatchChangeToDoList] = useReducer(
-    changeToDoListReducer,
+  const [favoritesState, dispatchChangeFavorites] = useReducer(
+    changeFavoritesReducer,
     initialList
   );
 
   return (
-    <TodoContext.Provider
+    <FavoritesContext.Provider
       value={{
-        listState: toDoState,
-        listDispatch: dispatchChangeToDoList,
+        listState: favoritesState,
+        listDispatch: dispatchChangeFavorites,
       }}
     >
       {props.children}
-    </TodoContext.Provider>
+    </FavoritesContext.Provider>
   );
 };

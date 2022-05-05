@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router-dom";
 import { FavoritesContext } from "../app/context";
@@ -13,24 +12,19 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import emailjs from "@emailjs/browser";
 import Input from "@mui/material/Input";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { type } from "@testing-library/user-event/dist/type";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 export default function RecipeTile(props) {
   const listContext = useContext(FavoritesContext);
   const form = useRef();
 
-  const onFavoriteClick = (props) => {
-    alert("Added to favorites!");
+  const onClearClick = (props) => {
     listContext.listDispatch({
-      type: "add",
+      type: "remove",
       index: props.index,
-      title: props.title,
-      id: props.id,
-      image: props.image,
     });
 
-    props.isFavorited = true;
+    props.isFavorited = false;
   };
 
   const sendEmail = (e) => {
@@ -56,17 +50,17 @@ export default function RecipeTile(props) {
   return (
     <div>
       <Card sx={{ maxWidth: 345 }}>
-        <Link to={`/recipe/${props.id}`}>
+        <Link to={`/recipe/${props.recipe.id}`}>
           <CardMedia
             component="img"
             alt="Recipe"
             height="calc(25vh - 25px)"
-            image={props.image}
+            image={props.recipe.image}
           />{" "}
         </Link>
         <CardActions>
           <Button size="small">
-            <FavoriteBorderIcon onClick={onFavoriteClick}></FavoriteBorderIcon>
+            <RemoveCircleIcon onClick={onClearClick}></RemoveCircleIcon>
           </Button>
           <Button size="small">
             <Popup
@@ -93,7 +87,7 @@ export default function RecipeTile(props) {
                   <textarea
                     readOnly
                     name="recipe_link"
-                    defaultValue={`http://localhost:3000/#/recipe/${props.id}`}
+                    defaultValue={`http://localhost:3000/#/recipe/${props.recipe.id}`}
                   ></textarea>
                 </form>
               </div>
@@ -101,10 +95,10 @@ export default function RecipeTile(props) {
             )
           </Button>
         </CardActions>
-        <Link to="/recipe/${props.id}">
+        <Link to={`/recipe/${props.recipe.id}`}>
           <CardContent style={{ height: "calc(15vh - 15px)" }}>
             <Typography gutterBottom variant="h6" component="div">
-              {props.title}
+              {props.recipe.title}
             </Typography>
           </CardContent>
         </Link>

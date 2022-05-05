@@ -16,7 +16,7 @@ import { Avatar } from "@mui/material";
 
 const pages = [
   { title: "Home", path: "/" },
-  { title: "Favorties", path: "/todo" },
+  { title: "Favorties", path: "/favorites" },
   { title: "Menu", path: "/menu" },
 ];
 

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import RecipeTile from "./RecipeTile";
-import { RecipeContext } from "../app/context";
 
 export function Home() {
   const [currRandomRecipes, setCurrRandomRecipes] = React.useState([{}]);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -13,7 +11,6 @@ export function Home() {
       .then((response) => response.json())
       .then(
         (data) => {
-          setIsLoaded(true);
           setCurrRandomRecipes(data.results);
         }
         // Note: it's important to handle errors here
@@ -33,6 +30,7 @@ export function Home() {
             title={recipe.title}
             id={recipe.id}
             image={recipe.image}
+            isFavorited={false}
 
             // handleFavoriteClicked
             // handleShareClicked

@@ -50,7 +50,7 @@ input:focus {
 
   height: 500px;
   width: 100%;
-  z-index: -1;
+  background-image: "./home_background1.jpg" ;
 }
 
 

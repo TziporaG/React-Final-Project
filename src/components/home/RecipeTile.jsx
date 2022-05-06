@@ -14,7 +14,6 @@ import "reactjs-popup/dist/index.css";
 import emailjs from "@emailjs/browser";
 import Input from "@mui/material/Input";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { type } from "@testing-library/user-event/dist/type";
 
 export default function RecipeTile(props) {
   const listContext = useContext(FavoritesContext);
@@ -29,8 +28,6 @@ export default function RecipeTile(props) {
       id: props.id,
       image: props.image,
     });
-
-    props.isFavorited = true;
   };
 
   const sendEmail = (e) => {
@@ -66,7 +63,9 @@ export default function RecipeTile(props) {
         </Link>
         <CardActions>
           <Button size="small">
-            <FavoriteBorderIcon onClick={onFavoriteClick}></FavoriteBorderIcon>
+            <FavoriteBorderIcon
+              onClick={() => onFavoriteClick(props)}
+            ></FavoriteBorderIcon>
           </Button>
           <Button size="small">
             <Popup
@@ -98,7 +97,6 @@ export default function RecipeTile(props) {
                 </form>
               </div>
             </Popup>
-            )
           </Button>
         </CardActions>
         <Link to="/recipe/${props.id}">

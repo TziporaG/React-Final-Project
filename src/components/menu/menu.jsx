@@ -1,27 +1,20 @@
 import { Weekend } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
 
-function RecipeItem(props) {
-  return (
-    <div>
-      {props.text?.map((meal, index) => (
-        <div key={index}>{meal.title}</div>
-      ))}
-    </div>
-  );
-}
+function RecipeItem(props) {}
 
 export const Menu = () => {
   const [currWeeklyRecipes, setCurrWeeklyRecipes] = React.useState([{}]);
 
-  useEffect(() => {
+  const generateMenu = () => {
     fetch(
       "https://api.spoonacular.com/mealplanner/generate?apiKey=f490623a08194292afaedba3e05a6dab&timeFrame=week"
     )
       .then((response) => response.json())
       .then(
         (data) => {
-          setCurrWeeklyRecipes(data.results);
+          setCurrWeeklyRecipes(data.week);
           console.log("currWeeklyRecipes");
         }
         // Note: it's important to handle errors here
@@ -29,72 +22,69 @@ export const Menu = () => {
         // exceptions from actual bugs in components.
         // (error) => {}
       );
-  }, []);
+  };
 
   return (
     <div>
-      {currWeeklyRecipes?.map((day, index) => (
-        <RecipeItem key={index} index={index} text={day.meals}></RecipeItem>
-      ))}
-      {/*
+      <Button
+        onClick={() => {
+          generateMenu();
+        }}
+      >
+        Generate Menu!
+      </Button>
       <table>
-        {currWeeklyRecipes?.map((day, index) => (
-          <tr key={index} >
-            <th>{day}</th>
-            {day?.meals.map((meal, index) => (
-              <td>{meal.title}</td>
+        <tbody>
+          <tr>
+            <th>Meal</th>
+            <th>Breakfast</th>
+            <th>Lunch</th>
+            <th>Dinner</th>
+          </tr>
+          <tr>
+            <th>Sunday</th>
+            {currWeeklyRecipes?.sunday?.meals?.map((meal, key) => (
+              <td key={key}>{meal.id}</td>
             ))}
           </tr>
-        ))}
-            </table>*/}
-      {/*
-      <table>
-        <tr>
-          <th>Meal</th>
-          <th>Sunday</th>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-          <th>Saturday</th>
-        </tr>
-        <tr>
-          <th>Breakfast</th>
-          <td>
-            {currWeeklyRecipes.monday.map((meal, index) => (
-              <span>{meal.title}</span>
+          <tr>
+            <th>Monday</th>
+            {currWeeklyRecipes?.monday?.meals?.map((meal, key) => (
+              <td key={key}>{meal.id}</td>
             ))}
-          </td>
-          <td>Germany</td>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-        </tr>
-        <tr>
-          <th>Lunch</th>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-        </tr>
-        <tr>
-          <th>Dinner</th>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-        </tr>
+          </tr>
+          <tr>
+            <th>Tuesday</th>
+            {currWeeklyRecipes?.tuesday?.meals?.map((meal, key) => (
+              <td key={key}>{meal.id}</td>
+            ))}
+          </tr>
+          <tr>
+            <th>Wednesday</th>
+            {currWeeklyRecipes?.wednesday?.meals?.map((meal, key) => (
+              <td key={key}>{meal.id}</td>
+            ))}
+          </tr>
+          <tr>
+            <th>Thursday</th>
+            {currWeeklyRecipes?.thursday?.meals?.map((meal, key) => (
+              <td key={key}>{meal.id}</td>
+            ))}
+          </tr>
+          <tr>
+            <th>Friday</th>
+            {currWeeklyRecipes?.friday?.meals?.map((meal, key) => (
+              <td key={key}>{meal.id}</td>
+            ))}
+          </tr>
+          <tr>
+            <th>Saturday</th>
+            {currWeeklyRecipes?.saturday?.meals?.map((meal, key) => (
+              <td key={key}>{meal.id}</td>
+            ))}
+          </tr>
+        </tbody>
       </table>
-      */}
     </div>
   );
 };

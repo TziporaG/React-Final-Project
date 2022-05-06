@@ -60,7 +60,7 @@ export default function RecipeTile(props) {
         </Link>
         <CardActions>
           <Button size="small">
-            <RemoveCircleIcon onClick={onClearClick}></RemoveCircleIcon>
+            <RemoveCircleIcon onClick={() => onClearClick()}></RemoveCircleIcon>
           </Button>
           <Button size="small">
             <Popup

@@ -2,7 +2,7 @@
 .homepage {
  /* background-image: url('background.jpg');*/
  /*background-color: black;*/
- margin: auto;
+
 }
 
 .recipe {
@@ -24,10 +24,29 @@
   grid-gap: 10px;
 }
 
+#favGrid {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+
+
 #grid > div {
   font-size: 4vw;
   padding: 10px;
 }
+
+#mainHeader {
+  color: whitesmoke;
+  font-size: 60px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
 
 .input {
   background-color: white;
@@ -53,89 +72,14 @@ input:focus {
   background-image: "./home_background1.jpg" ;
 }
 
-
-
-
-
-
-
-
-
-
-
-/******************************************************/
-.App {
-  text-align: center;
-  background-color: black;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-  font-size: calc(7px + 2vmin);
-  font-style: normal;
-  color: #d50000;
-  margin: auto;
-}
-
-
-.cardDiv {
-  justify-content: center;
-  display: flex;
-  flex-direction: row;
-}
-
-.card {
-  margin-right: 25px;
-  margin-left: 25px;
-  width: 400px;
-}
-
-.App-header {
-  text-align: center;
-  font-size: calc(28px + 2vmin);
-  color: #d50000;
-  font-style: normal;
-}
-
 .App-sub-header {
   text-align: center;
   font-size: calc(20px + 2vmin);
-  color: #d50000;
+  color: #bb0303;
+  font-family: 'Times New Roman', Times, serif;
   font-style: normal;
 }
 
-div.scrollable {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: auto;
-}
 
-#displayBox {
-  border: 4px solid #d50000;
-  width: 80%;
-  height: 550px;
-  margin-top: 10px;
-  padding: 0px;
-  vertical-align: top;
-  border-radius: 30px;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-down-arrow {
-    animation: App-down-arrow infinite 3s linear;
-  }
-}
 
-@keyframes App-down-arrow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-30px);
-  }
-}

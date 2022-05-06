@@ -20,7 +20,6 @@ export default function RecipeTile(props) {
   const form = useRef();
 
   const onFavoriteClick = (props) => {
-    alert("Added to favorites!");
     listContext.listDispatch({
       type: "add",
       index: props.index,

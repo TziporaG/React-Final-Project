@@ -88,9 +88,20 @@ export function Home() {
         className="backgroundImage"
       >
         <div style={{ width: "50%", margin: "auto" }}>
+          <h1 id="mainHeader">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search Any Recipe Here
+          </h1>
+          <br></br>
           <SearchBar setCurrRecipes={setCurrRecipes} />
         </div>
       </div>
+
+      <h1
+        className="App-sub-header"
+        style={{ textAlign: "left", marginLeft: "40px" }}
+      >
+        Top Picks
+      </h1>
       <div id="grid">
         {currRecipes?.map((recipe, index) => (
           <RecipeTile

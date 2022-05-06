@@ -23,8 +23,6 @@ export default function RecipeTile(props) {
       type: "remove",
       index: props.index,
     });
-
-    props.isFavorited = false;
   };
 
   const sendEmail = (e) => {
@@ -48,7 +46,7 @@ export default function RecipeTile(props) {
   };
 
   return (
-    <div>
+    <span>
       <Card sx={{ maxWidth: 345 }}>
         <Link to={`/recipe/${props.recipe.id}`}>
           <CardMedia
@@ -60,7 +58,9 @@ export default function RecipeTile(props) {
         </Link>
         <CardActions>
           <Button size="small">
-            <RemoveCircleIcon onClick={() => onClearClick()}></RemoveCircleIcon>
+            <RemoveCircleIcon
+              onClick={() => onClearClick(props.recipe.index)}
+            ></RemoveCircleIcon>
           </Button>
           <Button size="small">
             <Popup
@@ -103,6 +103,6 @@ export default function RecipeTile(props) {
           </CardContent>
         </Link>
       </Card>
-    </div>
+    </span>
   );
 }

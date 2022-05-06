@@ -11,7 +11,7 @@ import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
 
 function RecipeHeader(props) {
-  const listContext = useContext(FavoritesContext);
+  //const listContext = useContext(FavoritesContext);
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -36,58 +36,72 @@ function RecipeHeader(props) {
 
   return (
     <div>
-      <table>
-        <tr>
-          <td>
-            <ArrowBackIcon></ArrowBackIcon>
-          </td>
-          <td>
-            <Button size="small">
-              <Popup
-                trigger={<ShareIcon> </ShareIcon>}
-                position="right center"
-                closeOnDocumentClick
-              >
-                <div>
-                  <form ref={form} onSubmit={() => sendEmail()}>
-                    <label>Recipient Email: </label>
-                    <Input type="email" name="user_email" />
-                    <label>From (your name): </label>
-                    <Input type="text" name="name" />
-                    <Button
-                      type="submit"
-                      value="Send"
-                      variant="outlined"
-                      size="small"
-                    >
-                      Send
-                    </Button>
-                    <br />
-                    <label>Link:</label>
-                    <textarea
-                      readOnly
-                      name="recipe_link"
-                      defaultValue={`http://localhost:3000/#/recipe/${props.id}`}
-                    ></textarea>
-                  </form>
-                </div>
-              </Popup>
-            </Button>
-          </td>
-          <td>
-            <FavoriteBorderIcon
-              onClick={() =>
-                listContext.listDispatch({
-                  type: "add",
-                  index: props.index,
-                  title: props.title,
-                  id: props.id,
-                  image: props.image,
-                })
-              }
-            ></FavoriteBorderIcon>
-          </td>
-        </tr>
+      <table style={{ width: "100%" }}>
+        <tbody>
+          <tr>
+            <td>
+              <Button sx={{ color: "black" }}>
+                <Link to={`/`}>
+                  <ArrowBackIcon></ArrowBackIcon>
+                  <span>Back to all recipes</span>
+                </Link>
+              </Button>
+            </td>
+            <td style={{ textAlign: "left" }}>
+              <Button size="small">
+                <Popup
+                  trigger={
+                    <ShareIcon sx={{ width: "50px", height: "50px" }}>
+                      {" "}
+                    </ShareIcon>
+                  }
+                  position="right center"
+                  closeOnDocumentClick
+                >
+                  <div>
+                    <form ref={form} onSubmit={() => sendEmail()}>
+                      <label>Recipient Email: </label>
+                      <Input type="email" name="user_email" />
+                      <label>From (your name): </label>
+                      <Input type="text" name="name" />
+                      <Button
+                        type="submit"
+                        value="Send"
+                        variant="outlined"
+                        size="small"
+                      >
+                        Send
+                      </Button>
+                      <br />
+                      <label>Link:</label>
+                      <textarea
+                        readOnly
+                        name="recipe_link"
+                        defaultValue={`http://localhost:3000/#/recipe/${props.id}`}
+                      ></textarea>
+                    </form>
+                  </div>
+                </Popup>
+              </Button>
+            </td>
+            <td></td>
+            {/*<td>
+            <Button>
+              <FavoriteBorderIcon
+                onClick={(props) => {
+                  return listContext.listDispatch({
+                    type: "add",
+                    index: props.currRecipe.index,
+                    title: props.currRecipe.title,
+                    id: props.currRecipe.id,
+                    image: props.currRecipe.image,
+                  });
+                }}
+              ></FavoriteBorderIcon>
+              </Button>
+              </td>*/}
+          </tr>
+        </tbody>
       </table>
     </div>
   );
@@ -95,7 +109,7 @@ function RecipeHeader(props) {
 
 export const Recipe = () => {
   const recipeID = window.location.hash.split("/")[2];
-  const [currRecipe, setCurrRecipe] = React.useState("");
+  const [currRecipe, setCurrRecipe] = React.useState({});
 
   useEffect(() => {
     fetch(
@@ -112,14 +126,14 @@ export const Recipe = () => {
 
   return (
     <div>
-      <RecipeHeader></RecipeHeader>
+      <RecipeHeader currRecipe={currRecipe}></RecipeHeader>
       <img
         className="recipe"
         src={currRecipe}
         style={{
           position: "absolute",
           margin: "auto",
-          top: "100px",
+          top: "130px",
           left: "0px",
           right: "0px",
         }}

@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/React-Final-Project/static/css/main.c6613d2e.css",
-    "main.js": "/React-Final-Project/static/js/main.2e9dce70.js",
+    "main.css": "/React-Final-Project/static/css/main.00a72ac6.css",
+    "main.js": "/React-Final-Project/static/js/main.4dfc725f.js",
     "static/js/787.6ba6b6a5.chunk.js": "/React-Final-Project/static/js/787.6ba6b6a5.chunk.js",
-    "static/media/home_background2.jpg": "/React-Final-Project/static/media/home_background2.efa14ad0ca7e6a0d1219.jpg",
+    "static/media/home_background4.jpg": "/React-Final-Project/static/media/home_background4.591292d36d61b7969b22.jpg",
     "index.html": "/React-Final-Project/index.html",
-    "main.c6613d2e.css.map": "/React-Final-Project/static/css/main.c6613d2e.css.map",
-    "main.2e9dce70.js.map": "/React-Final-Project/static/js/main.2e9dce70.js.map",
+    "main.00a72ac6.css.map": "/React-Final-Project/static/css/main.00a72ac6.css.map",
+    "main.4dfc725f.js.map": "/React-Final-Project/static/js/main.4dfc725f.js.map",
     "787.6ba6b6a5.chunk.js.map": "/React-Final-Project/static/js/787.6ba6b6a5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c6613d2e.css",
-    "static/js/main.2e9dce70.js"
+    "static/css/main.00a72ac6.css",
+    "static/js/main.4dfc725f.js"
   ]
 }

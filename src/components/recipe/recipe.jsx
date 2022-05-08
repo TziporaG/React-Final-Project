@@ -77,7 +77,7 @@ function RecipeHeader(props) {
                       <textarea
                         readOnly
                         name="recipe_link"
-                        defaultValue={`http://localhost:3000/#/recipe/${props.id}`}
+                        defaultValue={`http://localhost:3000/#/recipe/${props.currRecipe.id}`}
                       ></textarea>
                     </form>
                   </div>

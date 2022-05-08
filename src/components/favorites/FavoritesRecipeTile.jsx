@@ -92,7 +92,6 @@ export default function RecipeTile(props) {
                 </form>
               </div>
             </Popup>
-            )
           </Button>
         </CardActions>
         <Link to={`/recipe/${props.recipe.id}`}>

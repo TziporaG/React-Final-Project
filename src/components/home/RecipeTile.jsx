@@ -14,10 +14,19 @@ import "reactjs-popup/dist/index.css";
 import emailjs from "@emailjs/browser";
 import Input from "@mui/material/Input";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import MuiAlert from "@mui/material/Alert";
+
+import Snackbar from "@mui/material/Snackbar";
 
 export default function RecipeTile(props) {
   const listContext = useContext(FavoritesContext);
   const form = useRef();
+  const [open, setOpen] = React.useState(false);
+
+  //taken from mui.com
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   const onFavoriteClick = (props) => {
     listContext.listDispatch({
@@ -27,6 +36,11 @@ export default function RecipeTile(props) {
       id: props.id,
       image: props.image,
     });
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
   };
 
   const sendEmail = (e) => {
@@ -106,6 +120,11 @@ export default function RecipeTile(props) {
           </CardContent>
         </Link>
       </Card>
+      <Snackbar open={open} autoHideDuration={2000} onClose={onClose}>
+        <Alert severity="success" sx={{ width: "100%" }}>
+          Added to favorites!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

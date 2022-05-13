@@ -1,13 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import RecipeTile from "./RecipeTile";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
-import backgroundImg from "./home_background.jpg";
+import backgroundImg from "./home_background2.jpg";
 import { red } from "@mui/material/colors";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 import Button from "@mui/material/Button";
 import DropDown from "./dropdown";
+import { RecipeListContext } from "../app/RecipeListContext";
 
 function SearchBar(props) {
   const [searchInput, setSearchInput] = React.useState("");
@@ -19,7 +20,10 @@ function SearchBar(props) {
       .then((response) => response.json())
       .then(
         (data) => {
-          props.setCurrRecipes(data.results);
+          props.setCurrRecipes({
+            type: "update",
+            currRecipeList: data.results,
+          });
         }
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -36,7 +40,7 @@ function SearchBar(props) {
     e.preventDefault();
     if (!searchInput) return;
     queryAPI();
-    props.myContainer.current.style.height = "300";
+    props.myContainer.current.style.height = "300px";
   };
 
   const handleClear = () => {
@@ -49,7 +53,6 @@ function SearchBar(props) {
         <TextField
           fullWidth
           sx={{ backgroundColor: "white", opacity: "75%" }}
-          error
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           InputProps={{
@@ -86,26 +89,12 @@ function SearchBar(props) {
 }
 export function Home() {
   const myContainer = useRef(null);
-  const [currRecipes, setCurrRecipes] = React.useState([{}]);
+  const listContext = useContext(RecipeListContext);
+  //const [currRecipes, setCurrRecipes] = React.useState([{}]);
   const [chosenFilterOptions, setChosenFilterOptions] = React.useState("");
-  useEffect(() => {
-    fetch(
-      "https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=10"
-    )
-      .then((response) => response.json())
-      .then(
-        (data) => {
-          setCurrRecipes(data.results);
-        }
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        // (error) => {}
-      );
-  }, []);
 
   return (
-    <div className="homepage">
+    <div className="App">
       <div
         ref={myContainer}
         style={{
@@ -113,8 +102,9 @@ export function Home() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          height: "500px",
+          width: "100%",
         }}
-        className="backgroundImage"
       >
         <div style={{ width: "50%", margin: "auto" }}>
           <h1 id="mainHeader">
@@ -122,7 +112,7 @@ export function Home() {
           </h1>
           <br></br>
           <SearchBar
-            setCurrRecipes={setCurrRecipes}
+            setCurrRecipes={listContext.listDispatch}
             myContainer={myContainer}
             chosenFilterOptions={chosenFilterOptions}
           />
@@ -141,7 +131,7 @@ export function Home() {
         Top Picks
       </h1>
       <div id="grid">
-        {currRecipes?.map((recipe, index) => (
+        {listContext.listState?.map((recipe, index) => (
           <RecipeTile
             key={index}
             index={index}

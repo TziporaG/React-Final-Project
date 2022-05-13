@@ -13,6 +13,7 @@ import "reactjs-popup/dist/index.css";
 import emailjs from "@emailjs/browser";
 import Input from "@mui/material/Input";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { red } from "@mui/material/colors";
 
 export default function RecipeTile(props) {
   const listContext = useContext(FavoritesContext);
@@ -59,12 +60,13 @@ export default function RecipeTile(props) {
         <CardActions>
           <Button size="small">
             <RemoveCircleIcon
+              sx={{ color: red[700] }}
               onClick={() => onClearClick(props.recipe.index)}
             ></RemoveCircleIcon>
           </Button>
           <Button size="small">
             <Popup
-              trigger={<ShareIcon> </ShareIcon>}
+              trigger={<ShareIcon sx={{ color: red[700] }}> </ShareIcon>}
               position="right center"
               closeOnDocumentClick
             >
@@ -96,7 +98,12 @@ export default function RecipeTile(props) {
         </CardActions>
         <Link to={`/recipe/${props.recipe.id}`}>
           <CardContent style={{ height: "calc(15vh - 15px)" }}>
-            <Typography gutterBottom variant="h6" component="div">
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              sx={{ color: "black" }}
+            >
               {props.recipe.title}
             </Typography>
           </CardContent>

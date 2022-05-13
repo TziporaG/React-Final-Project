@@ -15,6 +15,7 @@ import emailjs from "@emailjs/browser";
 import Input from "@mui/material/Input";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import MuiAlert from "@mui/material/Alert";
+import { red } from "@mui/material/colors";
 
 import Snackbar from "@mui/material/Snackbar";
 
@@ -77,12 +78,13 @@ export default function RecipeTile(props) {
         <CardActions>
           <Button size="small">
             <FavoriteBorderIcon
+              sx={{ color: red[700] }}
               onClick={() => onFavoriteClick(props)}
             ></FavoriteBorderIcon>
           </Button>
           <Button size="small">
             <Popup
-              trigger={<ShareIcon> </ShareIcon>}
+              trigger={<ShareIcon sx={{ color: red[700] }}> </ShareIcon>}
               position="right center"
               closeOnDocumentClick
             >
@@ -114,7 +116,12 @@ export default function RecipeTile(props) {
         </CardActions>
         <Link to="/recipe/${props.id}">
           <CardContent style={{ height: "calc(15vh - 15px)" }}>
-            <Typography gutterBottom variant="h6" component="div">
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              sx={{ color: "black" }}
+            >
               {props.title}
             </Typography>
           </CardContent>

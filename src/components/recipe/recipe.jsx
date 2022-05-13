@@ -8,9 +8,12 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import emailjs from "@emailjs/browser";
 import Input from "@mui/material/Input";
+import { red } from "@mui/material/colors";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 function RecipeHeader(props) {
+  const navigate = useNavigate();
   //const listContext = useContext(FavoritesContext);
   const form = useRef();
 
@@ -36,56 +39,49 @@ function RecipeHeader(props) {
 
   return (
     <div>
-      <table style={{ width: "100%" }}>
-        <tbody>
-          <tr>
-            <td>
-              <Button sx={{ color: "black" }}>
-                <Link to={`/`}>
-                  <ArrowBackIcon></ArrowBackIcon>
-                  <span>Back to all recipes</span>
-                </Link>
+      <Button sx={{ color: red[700] }} onClick={() => navigate(-1)}>
+        <ArrowBackIcon
+          sx={{ width: "50px", height: "50px", color: red[700] }}
+        ></ArrowBackIcon>
+      </Button>
+      <br></br>
+      <Button size="small">
+        <Popup
+          trigger={
+            <ShareIcon sx={{ width: "50px", height: "50px", color: red[700] }}>
+              {" "}
+            </ShareIcon>
+          }
+          position="right center"
+          closeOnDocumentClick
+        >
+          <div>
+            <form ref={form} onSubmit={() => sendEmail()}>
+              <label>Recipient Email: </label>
+              <Input type="email" name="user_email" />
+              <label>From (your name): </label>
+              <Input type="text" name="name" />
+              <Button
+                type="submit"
+                value="Send"
+                variant="outlined"
+                size="small"
+              >
+                Send
               </Button>
-            </td>
-            <td style={{ textAlign: "left" }}>
-              <Button size="small">
-                <Popup
-                  trigger={
-                    <ShareIcon sx={{ width: "50px", height: "50px" }}>
-                      {" "}
-                    </ShareIcon>
-                  }
-                  position="right center"
-                  closeOnDocumentClick
-                >
-                  <div>
-                    <form ref={form} onSubmit={() => sendEmail()}>
-                      <label>Recipient Email: </label>
-                      <Input type="email" name="user_email" />
-                      <label>From (your name): </label>
-                      <Input type="text" name="name" />
-                      <Button
-                        type="submit"
-                        value="Send"
-                        variant="outlined"
-                        size="small"
-                      >
-                        Send
-                      </Button>
-                      <br />
-                      <label>Link:</label>
-                      <textarea
-                        readOnly
-                        name="recipe_link"
-                        defaultValue={`http://localhost:3000/#/recipe/${props.currRecipe.id}`}
-                      ></textarea>
-                    </form>
-                  </div>
-                </Popup>
-              </Button>
-            </td>
-            <td></td>
-            {/*<td>
+              <br />
+              <label>Link:</label>
+              <textarea
+                readOnly
+                name="recipe_link"
+                defaultValue={`http://localhost:3000/#/recipe/${props.recipeID}`}
+              ></textarea>
+            </form>
+          </div>
+        </Popup>
+      </Button>
+
+      {/*<td>
             <Button>
               <FavoriteBorderIcon
                 onClick={(props) => {
@@ -100,9 +96,6 @@ function RecipeHeader(props) {
               ></FavoriteBorderIcon>
               </Button>
               </td>*/}
-          </tr>
-        </tbody>
-      </table>
     </div>
   );
 }
@@ -126,14 +119,14 @@ export const Recipe = () => {
 
   return (
     <div>
-      <RecipeHeader currRecipe={currRecipe}></RecipeHeader>
+      <RecipeHeader recipeID={recipeID}></RecipeHeader>
       <img
         className="recipe"
         src={currRecipe}
         style={{
           position: "absolute",
           margin: "auto",
-          top: "130px",
+          top: "200px",
           left: "0px",
           right: "0px",
         }}

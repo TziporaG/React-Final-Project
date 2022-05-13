@@ -7,20 +7,22 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { Header } from "../header/header";
 import { Menu } from "../menu/menu";
 import { FavoritesProvider } from "./context";
-
+import { RecipeListProvider } from "./RecipeListContext";
 function App() {
   return (
-    <FavoritesProvider>
-      <HashRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/recipe/:id" element={<Recipe />} />
-        </Routes>
-      </HashRouter>
-    </FavoritesProvider>
+    <RecipeListProvider>
+      <FavoritesProvider>
+        <HashRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/recipe/:id" element={<Recipe />} />
+          </Routes>
+        </HashRouter>
+      </FavoritesProvider>
+    </RecipeListProvider>
   );
 }
 

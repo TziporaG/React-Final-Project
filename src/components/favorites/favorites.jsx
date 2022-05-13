@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import { red } from "@mui/material/colors";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import backgroundImage from "./fav_background.jpg";
+import backgroundImage from "./fav_background6.jpg";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 import { Input } from "@mui/icons-material";
 
@@ -55,7 +55,6 @@ function SearchBar(props) {
               backgroundColor: "white",
               opacity: "75%",
             }}
-            error
             value={searchInput}
             onChange={(e) => {
               setSearchInput(e.target.value);
@@ -125,20 +124,18 @@ export const Favorites = () => {
   const listContext = useContext(FavoritesContext);
   const [searchResults, setSearchResults] = React.useState(null);
   return (
-    <div className="favorites">
+    <div className="App">
       <div
         style={{
           backgroundImage: `url(${backgroundImage})`,
           display: "flex",
-          alignItems: "center",
+
           justifyContent: "center",
         }}
         className="favbackgroundImage"
       >
-        <div style={{ width: "50%", margin: "auto" }}>
-          <h1 id="mainHeader" style={{ color: red[700] }}>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favorites
-          </h1>
+        <div style={{ width: "50%" }}>
+          <h1 id="mainHeader">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favorites</h1>
           <SearchBar
             array={listContext.listState}
             setSearchResults={setSearchResults}

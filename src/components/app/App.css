@@ -1,9 +1,9 @@
 
-.favorites {
+.App {
   margin:auto;
   text-align: center;
-  background-color: #f1eadb;
   height: 100%;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .recipe {
@@ -22,7 +22,10 @@
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
+
 
 #favGrid {
   display: grid;
@@ -33,13 +36,54 @@
   margin-right: 15%;
   margin-top: 5%;
   height: 100%;
-  min-height: 100vh;
+  min-height: 70vh;
+}
+
+#menuTable {
+  vertical-align: top;
+  margin-top: 2%;
+  margin-left:auto; 
+  margin-right:auto;
+  height: 100%;
+  border: black solid 1px;
+  border-spacing: 0px;
+  width: 90%
+}
+
+table tr, td, th {
+  vertical-align: top;
+  padding: 15px;
+  border-spacing: 10px;
+}
+
+tr, td, th {
+
+  background-color: whitesmoke;
+}
+
+/*
+table tr {
+	display: table-cell;
+  vertical-align: top;
+  padding: 30px;
+
+}
+table tr td{
+	display: block;
+  padding: 30px;
+  display: table-row;
+} 
+
+table tr th {
+  display: block;
+  padding: 50px;
+  display: table-row;
 }
 
 #grid > div {
   font-size: 2vw;
   padding: 10px;
-}
+}*/
 
 #mainHeader {
   color: whitesmoke;
@@ -73,8 +117,9 @@ input:focus {
 }
 
 .favbackgroundImage {
-  height: 200px;
+  height: 300px;
   width: 100%;
+
 }
 
 .App-sub-header {

@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router-dom";
 import { FavoritesContext } from "../app/FavoritesContext";
@@ -89,12 +88,13 @@ export default function RecipeTile(props) {
               closeOnDocumentClick
             >
               <div>
-                <form ref={form} onSubmit={() => sendEmail()}>
+                <form ref={form} onSubmit={sendEmail}>
                   <Input
                     type="email"
                     name="user_email"
-                    placeholder="Receipent Emial"
+                    placeholder="Recipient Email"
                   />
+
                   <Input
                     type="text"
                     name="name"
@@ -107,18 +107,17 @@ export default function RecipeTile(props) {
                     value="Send"
                     variant="outlined"
                     size="small"
-                    sx={{ color: "black", outlineColor: "black" }}
                   >
                     Send
                   </Button>
-                  <br></br>
+                  <br />
                   <br></br>
                   <label>Link:</label>
                   <textarea
                     style={{ border: "none", outline: "none", resize: "none" }}
                     readOnly
                     name="recipe_link"
-                    defaultValue={`http://localhost:3000/#/recipe/${props.recipeID}`}
+                    defaultValue={`https://tziporag.github.io/React-Final-Project/#/recipe/${props.id}`}
                   ></textarea>
                 </form>
               </div>

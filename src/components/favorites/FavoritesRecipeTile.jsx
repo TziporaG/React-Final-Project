@@ -71,11 +71,11 @@ export default function RecipeTile(props) {
               closeOnDocumentClick
             >
               <div>
-                <form ref={form} onSubmit={() => sendEmail()}>
+                <form ref={form} onSubmit={sendEmail}>
                   <Input
                     type="email"
                     name="user_email"
-                    placeholder="Receipent Emial"
+                    placeholder="Recipient Email"
                   />
                   <Input
                     type="text"
@@ -89,18 +89,16 @@ export default function RecipeTile(props) {
                     value="Send"
                     variant="outlined"
                     size="small"
-                    sx={{ color: "black", outlineColor: "black" }}
                   >
                     Send
                   </Button>
-                  <br></br>
-                  <br></br>
+                  <br></br> <br></br>
                   <label>Link:</label>
                   <textarea
                     style={{ border: "none", outline: "none", resize: "none" }}
                     readOnly
                     name="recipe_link"
-                    defaultValue={`http://localhost:3000/#/recipe/${props.recipeID}`}
+                    defaultValue={`https://tziporag.github.io/React-Final-Project/#/recipe/${props.recipe.id}`}
                   ></textarea>
                 </form>
               </div>

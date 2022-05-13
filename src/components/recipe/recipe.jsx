@@ -42,10 +42,11 @@ function RecipeHeader(props) {
         ></ArrowBackIcon>
       </Button>
       <br></br>
+
       <Button size="small">
         <Popup
           trigger={
-            <ShareIcon sx={{ width: "50px", height: "50px", color: red[700] }}>
+            <ShareIcon sx={{ color: red[700], width: "50px", height: "50px" }}>
               {" "}
             </ShareIcon>
           }
@@ -53,12 +54,13 @@ function RecipeHeader(props) {
           closeOnDocumentClick
         >
           <div>
-            <form ref={form} onSubmit={() => sendEmail()}>
+            <form ref={form} onSubmit={sendEmail}>
               <Input
                 type="email"
                 name="user_email"
-                placeholder="Receipent Emial"
+                placeholder="Recipient Email"
               />
+
               <Input type="text" name="name" placeholder="From (your name)" />
               <br></br>
               <br></br>
@@ -67,18 +69,17 @@ function RecipeHeader(props) {
                 value="Send"
                 variant="outlined"
                 size="small"
-                sx={{ color: "black", outlineColor: "black" }}
               >
                 Send
               </Button>
-              <br></br>
+              <br />
               <br></br>
               <label>Link:</label>
               <textarea
                 style={{ border: "none", outline: "none", resize: "none" }}
                 readOnly
                 name="recipe_link"
-                defaultValue={`http://localhost:3000/#/recipe/${props.recipeID}`}
+                defaultValue={`https://tziporag.github.io/React-Final-Project/#/recipe/${props.recipeID}`}
               ></textarea>
             </form>
           </div>

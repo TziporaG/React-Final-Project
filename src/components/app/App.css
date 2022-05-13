@@ -30,8 +30,8 @@
 #favGrid {
   display: grid;
   grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px;
   margin-left: 15%;
   margin-right: 15%;
   margin-top: 5%;
@@ -39,51 +39,33 @@
   min-height: 70vh;
 }
 
-#menuTable {
-  vertical-align: top;
-  margin-top: 2%;
-  margin-left:auto; 
-  margin-right:auto;
-  height: 100%;
-  border: black solid 1px;
-  border-spacing: 0px;
-  width: 90%
-}
-
-table tr, td, th {
+table {
   vertical-align: top;
   padding: 15px;
   border-spacing: 10px;
+  width: 70%;
+  height: 100%;
+  margin-top: 2%;
+  margin-left:auto; 
+  margin-right:auto;
 }
 
 tr, td, th {
-
-  background-color: whitesmoke;
+  color: #d19e60;
+  background-color: rgba(245, 245, 245, .5);
+  height: 50px;
+  border-radius: 5px;
 }
 
-/*
-table tr {
-	display: table-cell;
-  vertical-align: top;
-  padding: 30px;
-
-}
-table tr td{
-	display: block;
-  padding: 30px;
-  display: table-row;
-} 
-
-table tr th {
-  display: block;
-  padding: 50px;
-  display: table-row;
+form {
+  text-align: center;
+  color: black;
 }
 
 #grid > div {
   font-size: 2vw;
   padding: 10px;
-}*/
+}
 
 #mainHeader {
   color: whitesmoke;

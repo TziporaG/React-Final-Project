@@ -81,7 +81,12 @@ export const Header = () => {
                   key={page.title}
                   onClick={() => handleCloseNavMenu(page)}
                 >
-                  <Typography textAlign="center">{page.title}</Typography>
+                  <Typography
+                    textAlign="center"
+                    sx={{ fontFamily: "Times New Roman" }}
+                  >
+                    {page.title}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -91,8 +96,8 @@ export const Header = () => {
             sx={{
               my: 3,
               bgcolor: red[700],
-              width: 30,
-              height: 30,
+              width: 50,
+              height: 50,
             }}
           >
             <InventoryIcon></InventoryIcon>
@@ -104,7 +109,7 @@ export const Header = () => {
             sx={{
               display: { xs: "none", md: "flex" },
               color: red[700],
-              fontFamily: "Calibri",
+              fontFamily: "Times New Roman",
             }}
           >
             &nbsp;&nbsp;&nbsp;Recipe Box&nbsp;
@@ -118,7 +123,7 @@ export const Header = () => {
                   color: red[700],
                   display: "block",
                   textTransform: "none",
-                  fontFamily: "Calibri",
+                  fontFamily: "Times New Roman",
                   fontSize: "17px",
                 }}
                 onClick={() => handleCloseNavMenu(page)}

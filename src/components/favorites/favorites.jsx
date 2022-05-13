@@ -1,19 +1,16 @@
-import React, { useContext, useState } from "react";
-import { FavoritesContext } from "../app/context";
+import React, { useContext } from "react";
+import { FavoritesContext } from "../app/FavoritesContext";
 import FavoritesRecipeTile from "./FavoritesRecipeTile";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import { red } from "@mui/material/colors";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import backgroundImage from "./fav_background6.jpg";
+import backgroundImage from "./fav_background.jpg";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
-import { Input } from "@mui/icons-material";
 
 function SearchBar(props) {
   const [searchInput, setSearchInput] = React.useState("");
-  //const [searchResults, setSearchResults] = React.useState([{}]);
 
   const searchArray = (keyword) => {
     props.setSearchResults(
@@ -22,16 +19,6 @@ function SearchBar(props) {
       )
     );
   };
-  {
-    /*
-    const searchTerm = keyword.toLowerCase();
-    return props.array.filter((recipe) => {
-      setSearchResults(
-        recipe.title.toLowerCase().match(new RegExp(searchTerm, "g"))
-      );
-    });
-  };*/
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -90,32 +77,6 @@ function SearchBar(props) {
           />
         </div>
       </form>
-      <span>
-        {/*{searchResults?.map((recipe, index) => (
-        }  <Link
-            to={`/recipe/${recipe.id}`}
-            key={index}
-            style={{ textAlign: "center", display: "block", color: red[700] }}
-          >
-            <li>{recipe.title}</li>
-          </Link>
-        ))}
-        <br></br>*/}
-        {/*
-        <FavoritesRecipeTile
-            style={{ display: "inline" }}
-            key={index}
-            index={index}
-            recipe={{
-              title: recipe.title,
-              id: recipe.id,
-              index: recipe.index,
-              image: recipe.image,
-              isFavorited: true,
-            }}
-            recipes={props.array}
-          ></FavoritesRecipeTile>))}*/}
-      </span>
     </div>
   );
 }
@@ -159,16 +120,14 @@ export const Favorites = () => {
                 recipes={listContext.listState}
               ></FavoritesRecipeTile>
             ))
-          : listContext.listState
-              //  .reverse()
-              .map((recipe, index) => (
-                <FavoritesRecipeTile
-                  key={index}
-                  index={index}
-                  recipe={recipe}
-                  recipes={listContext.listState}
-                ></FavoritesRecipeTile>
-              ))}
+          : listContext.listState.map((recipe, index) => (
+              <FavoritesRecipeTile
+                key={index}
+                index={index}
+                recipe={recipe}
+                recipes={listContext.listState}
+              ></FavoritesRecipeTile>
+            ))}
       </div>
     </div>
   );

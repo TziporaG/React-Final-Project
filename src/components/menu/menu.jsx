@@ -1,5 +1,4 @@
-import { Weekend } from "@mui/icons-material";
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Button from "@mui/material/Button";
 import backgroundImage from "./menu_background.jpg";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
@@ -10,11 +9,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import DropDown from "../home/dropdown";
+import { MenuContext } from "../app/MenuContext";
 
 function RecipeLink(props) {
   return (
     <td key={props.key}>
-      <Link to={`/recipe/${props.id}`} style={{ color: blue[700] }}>
+      <Link to={`/recipe/${props.id}`} style={{ color: "black" }}>
         {props.title}
       </Link>
     </td>
@@ -45,7 +45,7 @@ const DietDropDown = (props) => {
 };
 
 export const Menu = () => {
-  const [currWeeklyRecipes, setCurrWeeklyRecipes] = React.useState([{}]);
+  const menuContext = useContext(MenuContext);
   const [chosenFilterOptions, setChosenFilterOptions] = React.useState("");
 
   const handleDietChange = (event) => {
@@ -59,20 +59,14 @@ export const Menu = () => {
       `https://api.spoonacular.com/mealplanner/generate?apiKey=f490623a08194292afaedba3e05a6dab&timeFrame=week&diet=${chosenFilterOptions.diet}`
     )
       .then((response) => response.json())
-      .then(
-        (data) => {
-          setCurrWeeklyRecipes(data.week);
-          console.log("currWeeklyRecipes");
-        }
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        // (error) => {}
-      );
+      .then((data) => {
+        menuContext.newMenuDispatch(data.week);
+        console.log("currWeeklyRecipes");
+      });
   };
 
   return (
-    <div className="App" style={{ backgroundColor: "#e0cfba" }}>
+    <div className="App" style={{ backgroundColor: "#e8dbcc" }}>
       <div
         style={{
           backgroundImage: `url(${backgroundImage})`,
@@ -92,7 +86,7 @@ export const Menu = () => {
           ></DietDropDown>
           <br></br>
           <Button
-            sx={{ color: "black", opacity: "75%", backgroundColor: "white" }}
+            sx={{ color: "black", opacity: "85%", backgroundColor: "white" }}
             onClick={() => {
               generateMenu();
             }}
@@ -112,7 +106,7 @@ export const Menu = () => {
             </tr>
             <tr>
               <th>Sunday</th>
-              {currWeeklyRecipes?.sunday?.meals?.map((meal, key) => (
+              {menuContext.currMenuState?.sunday?.meals?.map((meal, key) => (
                 <RecipeLink
                   key={key}
                   id={meal.id}
@@ -122,7 +116,7 @@ export const Menu = () => {
             </tr>
             <tr>
               <th>Monday</th>
-              {currWeeklyRecipes?.monday?.meals?.map((meal, key) => (
+              {menuContext.currMenuState?.monday?.meals?.map((meal, key) => (
                 <RecipeLink
                   key={key}
                   id={meal.id}
@@ -132,7 +126,7 @@ export const Menu = () => {
             </tr>
             <tr>
               <th>Tuesday</th>
-              {currWeeklyRecipes?.tuesday?.meals?.map((meal, key) => (
+              {menuContext.currMenuState?.tuesday?.meals?.map((meal, key) => (
                 <RecipeLink
                   key={key}
                   id={meal.id}
@@ -142,7 +136,7 @@ export const Menu = () => {
             </tr>
             <tr>
               <th>Wednesday</th>
-              {currWeeklyRecipes?.wednesday?.meals?.map((meal, key) => (
+              {menuContext.currMenuState?.wednesday?.meals?.map((meal, key) => (
                 <RecipeLink
                   key={key}
                   id={meal.id}
@@ -152,7 +146,7 @@ export const Menu = () => {
             </tr>
             <tr>
               <th>Thursday</th>
-              {currWeeklyRecipes?.thursday?.meals?.map((meal, key) => (
+              {menuContext.currMenuState?.thursday?.meals?.map((meal, key) => (
                 <RecipeLink
                   key={key}
                   id={meal.id}
@@ -162,7 +156,7 @@ export const Menu = () => {
             </tr>
             <tr>
               <th>Friday</th>
-              {currWeeklyRecipes?.friday?.meals?.map((meal, key) => (
+              {menuContext.currMenuState?.friday?.meals?.map((meal, key) => (
                 <RecipeLink
                   key={key}
                   id={meal.id}
@@ -172,7 +166,7 @@ export const Menu = () => {
             </tr>
             <tr>
               <th>Saturday</th>
-              {currWeeklyRecipes?.saturday?.meals?.map((meal, key) => (
+              {menuContext.currMenuState?.saturday?.meals?.map((meal, key) => (
                 <RecipeLink
                   key={key}
                   id={meal.id}

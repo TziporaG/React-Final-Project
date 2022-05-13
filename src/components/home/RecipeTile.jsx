@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router-dom";
-import { FavoritesContext } from "../app/context";
+import { FavoritesContext } from "../app/FavoritesContext";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import emailjs from "@emailjs/browser";
@@ -89,25 +89,36 @@ export default function RecipeTile(props) {
               closeOnDocumentClick
             >
               <div>
-                <form ref={form} onSubmit={sendEmail}>
-                  <label>Recipient Email: </label>
-                  <Input type="email" name="user_email" />
-                  <label>From (your name): </label>
-                  <Input type="text" name="name" />
+                <form ref={form} onSubmit={() => sendEmail()}>
+                  <Input
+                    type="email"
+                    name="user_email"
+                    placeholder="Receipent Emial"
+                  />
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="From (your name)"
+                  />
+                  <br></br>
+                  <br></br>
                   <Button
                     type="submit"
                     value="Send"
                     variant="outlined"
                     size="small"
+                    sx={{ color: "black", outlineColor: "black" }}
                   >
                     Send
                   </Button>
-                  <br />
+                  <br></br>
+                  <br></br>
                   <label>Link:</label>
                   <textarea
+                    style={{ border: "none", outline: "none", resize: "none" }}
                     readOnly
                     name="recipe_link"
-                    defaultValue={`http://localhost:3000/#/recipe/${props.id}`}
+                    defaultValue={`http://localhost:3000/#/recipe/${props.recipeID}`}
                   ></textarea>
                 </form>
               </div>

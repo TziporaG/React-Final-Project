@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import RecipeTile from "./RecipeTile";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
-import backgroundImg from "./home_background2.jpg";
+import backgroundImg from "./home_background.jpg";
 import { red } from "@mui/material/colors";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 import Button from "@mui/material/Button";
@@ -18,22 +18,12 @@ function SearchBar(props) {
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=15&query="${searchInput}"&cuisine=${props.chosenFilterOptions.cuisine}&diet=${props.chosenFilterOptions.diet}&intolerances=${props.chosenFilterOptions.intolerances}`
     )
       .then((response) => response.json())
-      .then(
-        (data) => {
-          props.setCurrRecipes({
-            type: "update",
-            currRecipeList: data.results,
-          });
-        }
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        // (error) => {}
-      );
-    //just for myself...
-    console.log(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=15&query="${searchInput}"&cuisine=${props.chosenFilterOptions.cuisine}&diet=${props.chosenFilterOptions.diet}&intolerances=${props.chosenFilterOptions.intolerances}`
-    );
+      .then((data) => {
+        props.setCurrRecipes({
+          type: "update",
+          currRecipeList: data.results,
+        });
+      });
   };
 
   const handleSubmit = (e) => {
@@ -90,7 +80,6 @@ function SearchBar(props) {
 export function Home() {
   const myContainer = useRef(null);
   const listContext = useContext(RecipeListContext);
-  //const [currRecipes, setCurrRecipes] = React.useState([{}]);
   const [chosenFilterOptions, setChosenFilterOptions] = React.useState("");
 
   return (

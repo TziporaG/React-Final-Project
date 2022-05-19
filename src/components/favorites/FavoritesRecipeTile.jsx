@@ -12,7 +12,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import emailjs from "@emailjs/browser";
 import Input from "@mui/material/Input";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { red } from "@mui/material/colors";
 
 export default function RecipeTile(props) {
@@ -22,7 +22,7 @@ export default function RecipeTile(props) {
   const onClearClick = (props) => {
     listContext.listDispatch({
       type: "remove",
-      index: props.index,
+      id: props,
     });
   };
 
@@ -59,10 +59,10 @@ export default function RecipeTile(props) {
         </Link>
         <CardActions>
           <Button size="small">
-            <RemoveCircleIcon
+            <RemoveCircleOutlineIcon
               sx={{ color: red[700] }}
-              onClick={() => onClearClick(props.recipe.index)}
-            ></RemoveCircleIcon>
+              onClick={() => onClearClick(props.recipe.id)}
+            ></RemoveCircleOutlineIcon>
           </Button>
           <Button size="small">
             <Popup

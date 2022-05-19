@@ -22,7 +22,8 @@ const changeFavoritesReducer = (state, action) => {
 
     case "remove":
       newFavorites = [...state];
-      newFavorites.splice(action.index, 1);
+      newFavorites = newFavorites.filter((recipe) => recipe.id !== action.id);
+
       return newFavorites;
 
     default:

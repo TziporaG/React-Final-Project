@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
 import Button from "@mui/material/Button";
 import backgroundImage from "./menu_background.jpg";
-import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
-import { blue, red } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import DropDown from "../home/dropdown";
 import { MenuContext } from "../app/MenuContext";
 
 function RecipeLink(props) {
   return (
-    <td key={props.key}>
+    <td>
       <Link to={`/recipe/${props.id}`} style={{ color: "black" }}>
         {props.title}
       </Link>
@@ -26,7 +23,12 @@ const DietDropDown = (props) => {
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small" display="inline">
       <InputLabel>Diet</InputLabel>
       <Select
-        sx={{ backgroundColor: "white", opacity: "75%" }}
+        sx={{
+          backgroundColor: "white",
+          opacity: "75%",
+          color: "black",
+          borderColor: "black",
+        }}
         value={props.chosenFilterOptions?.diet ?? ""}
         label="Diet"
         onChange={props.handleDietChange}
@@ -173,6 +175,18 @@ export const Menu = () => {
                   title={meal.title}
                 ></RecipeLink>
               ))}
+            </tr>
+            <tr>
+              <td colSpan={4}>
+                Total calories for week:&nbsp;&nbsp;&nbsp;
+                {menuContext.currMenuState?.sunday?.nutrients?.calories +
+                  menuContext.currMenuState?.monday?.nutrients?.calories +
+                  menuContext.currMenuState?.tuesday?.nutrients?.calories +
+                  menuContext.currMenuState?.wednesday?.nutrients?.calories +
+                  menuContext.currMenuState?.thursday?.nutrients?.calories +
+                  menuContext.currMenuState?.friday?.nutrients?.calories +
+                  menuContext.currMenuState?.saturday?.nutrients?.calories}
+              </td>
             </tr>
           </tbody>
         </table>

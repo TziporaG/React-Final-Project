@@ -18,7 +18,7 @@ export const RecipeListContext = React.createContext();
 export const RecipeListProvider = (props) => {
   useEffect(() => {
     fetch(
-      "https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=10"
+      "https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=20"
     )
       .then((response) => response.json())
       .then(

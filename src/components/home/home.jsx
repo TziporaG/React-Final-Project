@@ -15,7 +15,7 @@ function SearchBar(props) {
 
   const queryAPI = () => {
     fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=15&query="${searchInput}"&cuisine=${props.chosenFilterOptions.cuisine}&diet=${props.chosenFilterOptions.diet}&intolerances=${props.chosenFilterOptions.intolerances}`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=20&query="${searchInput}"&cuisine=${props.chosenFilterOptions.cuisine}&diet=${props.chosenFilterOptions.diet}&intolerances=${props.chosenFilterOptions.intolerances}`
     )
       .then((response) => response.json())
       .then((data) => {

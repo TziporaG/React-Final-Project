@@ -75,6 +75,7 @@ export const Menu = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          width: "100%",
         }}
         className="favbackgroundImage"
       >
@@ -185,7 +186,8 @@ export const Menu = () => {
                   menuContext.currMenuState?.wednesday?.nutrients?.calories +
                   menuContext.currMenuState?.thursday?.nutrients?.calories +
                   menuContext.currMenuState?.friday?.nutrients?.calories +
-                  menuContext.currMenuState?.saturday?.nutrients?.calories}
+                  menuContext.currMenuState?.saturday?.nutrients?.calories ||
+                  ""}
               </td>
             </tr>
           </tbody>

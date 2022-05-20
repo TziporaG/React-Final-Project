@@ -21,18 +21,12 @@ export const RecipeListProvider = (props) => {
       "https://api.spoonacular.com/recipes/complexSearch?apiKey=f490623a08194292afaedba3e05a6dab&number=20"
     )
       .then((response) => response.json())
-      .then(
-        (data) => {
-          dispatchChangeRecipeList({
-            type: "update",
-            currRecipeList: data.results,
-          });
-        }
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        // (error) => {}
-      );
+      .then((data) => {
+        dispatchChangeRecipeList({
+          type: "update",
+          currRecipeList: data.results,
+        });
+      });
   }, []);
 
   const [recipeListState, dispatchChangeRecipeList] = useReducer(

@@ -89,7 +89,15 @@ export const Menu = () => {
           ></DietDropDown>
           <br></br>
           <Button
-            sx={{ color: "black", opacity: "85%", backgroundColor: "white" }}
+            sx={{
+              color: "black",
+              opacity: "65%",
+              backgroundColor: "white",
+              ":hover": {
+                bgcolor: "white",
+                color: "#d19e60",
+              },
+            }}
             onClick={() => {
               generateMenu();
             }}
